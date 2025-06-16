@@ -1,0 +1,119 @@
+[project]
+name = "python-adk-mcp-uv-template"
+version = "0.0.1"
+description = "Template repository for Python projects using uv, Google ADK, and Anthropic MCP for AI agent development."
+authors = [{ name = "Tyler Zervas", email = "tzervas@vectorweight.com" }]
+readme = "README.md"
+keywords = ["python", "ai", "adk", "mcp", "uv"]
+requires-python = ">=3.9,<4.0"
+classifiers = [
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+Homepage = "https://tzervas.github.io/python-adk-mcp-uv-template/"
+Repository = "https://github.com/tzervas/python-adk-mcp-uv-template"
+Documentation = "https://tzervas.github.io/python-adk-mcp-uv-template/"
+
+[dependency-groups]
+dev = [
+    "pytest>=7.2.0",
+    "pre-commit>=2.20.0",
+    "tox-uv>=1.11.3",
+    "deptry>=0.23.0",
+    "mypy>=0.991",
+    "pytest-cov>=4.0.0",
+    "ruff>=0.11.5",
+    "mkdocs>=1.4.2",
+    "mkdocs-material>=8.5.10",
+    "mkdocstrings[python]>=0.26.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/python_adk_mcp_uv_template"]
+
+[tool.uv]
+dependencies = [
+    "google-adk",
+    "mcp",
+    "anthropic", # Optional for Claude integration
+    "google-cloud-aiplatform", # Optional for Vertex AI
+]
+dev-dependencies = [
+    "pytest>=7.2.0",
+    "ruff>=0.11.5",
+    "pytest-cov>=4.0.0",
+    "pre-commit>=2.20.0",
+    "tox-uv>=1.11.3",
+    "deptry>=0.23.0",
+    "mypy>=0.991",
+    "mkdocs>=1.4.2",
+    "mkdocs-material>=8.5.10",
+    "mkdocstrings[python]>=0.26.1",
+]
+
+[tool.mypy]
+files = ["src"]
+disallow_untyped_defs = true
+disallow_any_unimported = true
+no_implicit_optional = true
+check_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true
+show_error_codes = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py39"
+line-length = 120
+fix = true
+
+[tool.ruff.lint]
+select = [
+    "YTT", # flake8-2020
+    "S",   # flake8-bandit
+    "B",   # flake8-bugbear
+    "A",   # flake8-builtins
+    "C4",  # flake8-comprehensions
+    "T10", # flake8-debugger
+    "SIM", # flake8-simplify
+    "I",   # isort
+    "C90", # mccabe
+    "E", "W", # pycodestyle
+    "F",   # pyflakes
+    "PGH", # pygrep-hooks
+    "UP",  # pyupgrade
+    "RUF", # ruff
+    "TRY", # tryceratops
+]
+ignore = [
+    "E501", # LineTooLong
+    "E731", # DoNotAssignLambda
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.ruff.format]
+preview = true
+
+[tool.coverage.report]
+skip_empty = true
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
