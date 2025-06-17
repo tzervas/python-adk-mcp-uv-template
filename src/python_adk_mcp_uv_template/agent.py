@@ -1,6 +1,5 @@
 import yaml
 from google.adk.agents import Agent
-from google.adk import Agent
 from google.adk.tools.mcp_tool import MCPToolset
 from mcp.client.stdio import StdioServerParameters
 
