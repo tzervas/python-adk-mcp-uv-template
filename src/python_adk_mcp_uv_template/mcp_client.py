@@ -1,4 +1,3 @@
-import asyncio
 from mcp import FastMCP
 from anthropic import Anthropic
 import logging

@@ -5,23 +5,30 @@ description = "Template repository for Python projects using uv, Google ADK, and
 authors = [{ name = "Tyler Zervas", email = "tzervas@vectorweight.com" }]
 readme = "README.md"
 keywords = ["python", "ai", "adk", "mcp", "uv"]
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.12,<4.0"
 classifiers = [
     "Intended Audience :: Developers",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "uv>=0.2.0",
+    "google-adk>=1.3.0",
+    "mcp>=1.9.4",
 ]
 
 [project.urls]
 Homepage = "https://tzervas.github.io/python-adk-mcp-uv-template/"
 Repository = "https://github.com/tzervas/python-adk-mcp-uv-template"
 Documentation = "https://tzervas.github.io/python-adk-mcp-uv-template/"
+
+[project.optional-dependencies]
+integrations = [
+    "anthropic>=0.54.0",
+    "google-cloud-aiplatform>=1.97.0",
+]
 
 [dependency-groups]
 dev = [
@@ -43,26 +50,6 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/python_adk_mcp_uv_template"]
-
-[tool.uv]
-dependencies = [
-    "google-adk",
-    "mcp",
-    "anthropic", # Optional for Claude integration
-    "google-cloud-aiplatform", # Optional for Vertex AI
-]
-dev-dependencies = [
-    "pytest>=7.2.0",
-    "ruff>=0.11.5",
-    "pytest-cov>=4.0.0",
-    "pre-commit>=2.20.0",
-    "tox-uv>=1.11.3",
-    "deptry>=0.23.0",
-    "mypy>=0.991",
-    "mkdocs>=1.4.2",
-    "mkdocs-material>=8.5.10",
-    "mkdocstrings[python]>=0.26.1",
-]
 
 [tool.mypy]
 files = ["src"]
