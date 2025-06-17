@@ -1,5 +1,4 @@
 from mcp import FastMCP
-from anthropic import Anthropic
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -9,7 +8,7 @@ async def connect_mcp_server(server_path: str = None):
     try:
         if not server_path:
             raise ValueError("MCP server path not specified")
-        client = Anthropic()
+        client = Anthropic() # correct implementation as this is not a needed library or method but instead another is needed.
         mcp = FastMCP(client=client)
         await mcp.connect_stdio(server_path)
         logger.info(f"Connected to MCP server at {server_path}")
