@@ -1,27 +1,20 @@
-# Use a slim Python base image
-FROM python:3.12-slim
-
-# Install uv from a pre-built image for efficiency
+# Build stage
+FROM python:3.12-slim AS builder
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
-
-# Set working directory
 WORKDIR /app
-
-# Copy lockfile and pyproject.toml for dependency caching
-COPY uv.lock /app/uv.lock
-COPY pyproject.toml /app/pyproject.toml
-
-# Install dependencies without project to leverage caching
+COPY uv.lock pyproject.toml .
 RUN uv sync --frozen --no-install-project
-
-# Copy the rest of the project
-COPY . /app
-
-# Sync the project to ensure all dependencies are installed
+COPY . .
 RUN uv sync --frozen
 
-# Expose port if needed (optional, adjust as per project needs)
-# EXPOSE 8080
-
-# Command to run the ADK agent
+# Runtime stage
+FROM python:3.12-slim
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
+WORKDIR /app
+COPY --from=builder /app /app
+# Install runtime dependencies
+RUN uv sync --frozen
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD uv run python -c "import sys; sys.exit(0)" || exit 1
 CMD ["uv", "run", "adk", "run", "src"]

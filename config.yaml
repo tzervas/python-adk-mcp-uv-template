@@ -1,0 +1,9 @@
+adk:
+  agent_name: sample_agent
+  model: gemini-1.5-pro
+  max_tokens: 4096
+  temperature: 0.7
+mcp:
+  server_path: src/mcp_server.py
+  transport: stdio  # Options: stdio, sse, http
+  server_url: http://localhost:8050/sse  # For sse/http transports

@@ -1,8 +1,18 @@
 # python-adk-mcp-uv-template
 
-[![Release](https://img.shields.io/github/v/release/tzervas/python-adk-mcp-uv-template)](https://img.shields.io/github/v/release/tzervas/python-adk-mcp-uv-template)
-[![Build status](https://img.shields.io/github/actions/workflow/status/tzervas/python-adk-mcp-uv-template/main.yml?branch=main)](https://github.com/tzervas/python-adk-mcp-uv-template/actions/workflows/main.yml?query=branch%3Amain)
-[![Commit activity](https://img.shields.io/github/commit-activity/m/tzervas/python-adk-mcp-uv-template)](https://img.shields.io/github/commit-activity/m/tzervas/python-adk-mcp-uv-template)
-[![License](https://img.shields.io/github/license/tzervas/python-adk-mcp-uv-template)](https://img.shields.io/github/license/tzervas/python-adk-mcp-uv-template)
+## Python ADK + MCP + UV Template
 
-This is a template repository for Python projects that use uv for their dependency management.
+A template for building AI agent applications with Google ADK, Anthropic MCP, and UV.
+
+### Getting Started
+Follow the [README](https://github.com/tzervas/python-adk-mcp-uv-template) for setup instructions.
+
+### Key Features
+- AI agent development with Google ADK.
+- External data connectivity via Anthropic MCP.
+- Fast dependency management with UV.
+
+### Guides
+- [Configuration](configuration.md)
+- [Developer Guide](devel-docs/developer_guide.md)
+- 
