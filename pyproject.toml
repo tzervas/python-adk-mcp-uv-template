@@ -15,7 +15,7 @@ classifiers = [
 ]
 dependencies = [
     "google-adk>=1.3.0",
-    "mcp>=1.9.4",
+    "mcp>=1.28.1",
     "pyyaml>=6.0.2",
 ]
 
@@ -27,12 +27,12 @@ Documentation = "https://tzervas.github.io/python-adk-mcp-uv-template/"
 [project.optional-dependencies]
 integrations = [
     "anthropic>=0.54.0",
-    "google-cloud-aiplatform>=1.97.0",
+    "google-cloud-aiplatform>=1.133.0",
 ]
 
 [dependency-groups]
 dev = [
-    "pytest>=7.2.0",
+    "pytest>=9.0.3",
     "pre-commit>=2.20.0",
     "tox-uv>=1.11.3",
     "deptry>=0.23.0",
