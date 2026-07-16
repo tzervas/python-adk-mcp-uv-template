@@ -17,4 +17,4 @@ RUN uv sync --frozen
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s \
   CMD uv run python -c "import sys; sys.exit(0)" || exit 1
-CMD ["uv", "run", "adk", "run", "src"]
+CMD ["uv", "run", "adk", "run", "src/python_adk_mcp_uv_template"]

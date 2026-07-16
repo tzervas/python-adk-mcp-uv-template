@@ -14,9 +14,9 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-    "uv>=0.2.0",
     "google-adk>=1.3.0",
     "mcp>=1.9.4",
+    "pyyaml>=6.0.2",
 ]
 
 [project.urls]
@@ -37,6 +37,7 @@ dev = [
     "tox-uv>=1.11.3",
     "deptry>=0.23.0",
     "mypy>=0.991",
+    "types-PyYAML>=6.0.12",
     "pytest-cov>=4.0.0",
     "ruff>=0.11.5",
     "mkdocs>=1.4.2",
@@ -65,7 +66,7 @@ show_error_codes = true
 testpaths = ["tests"]
 
 [tool.ruff]
-target-version = "py39"
+target-version = "py312"
 line-length = 120
 fix = true
 
@@ -97,6 +98,10 @@ ignore = [
 
 [tool.ruff.format]
 preview = true
+
+[tool.deptry.per_rule_ignores]
+# Optional integration extras are intentional for consumers; not imported by the sample package yet.
+DEP002 = ["anthropic", "google-cloud-aiplatform"]
 
 [tool.coverage.report]
 skip_empty = true
