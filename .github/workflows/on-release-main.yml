@@ -7,7 +7,7 @@ on:
 jobs:
 
   deploy-docs:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64, podman]
     steps:
       - name: Check out
         uses: actions/checkout@v4
