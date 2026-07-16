@@ -9,6 +9,9 @@ copyright: Maintained by <a href="https://tzervas.com">tzervas</a>.
 
 nav:
   - Home: index.md
+  - Configuration: configuration.md
+  - ADK guide: adk_guide.md
+  - MCP guide: mcp_guide.md
   - Modules: modules.md
 plugins:
   - search

@@ -1,15 +1,24 @@
 # Configuration Guide
 
-This guide details how to configure the Python ADK + MCP + UV Template.
+How to configure this Python ADK + MCP + UV template.
 
-## Environment Variables
-Copy `.env.example` to `.env` and set the following:
-- `GOOGLE_API_KEY`: Your Google Cloud API key for ADK integration.
-- `ANTHROPIC_API_KEY`: Your Anthropic API key for MCP functionality.
-- `GOOGLE_CLOUD_PROJECT`: Your Google Cloud project ID.
+## Environment variables
 
-## Config YAML
-Create a `config.yaml` file in the project root with the following structure:
+Copy `.env.example` to `.env` and set values as needed:
+
+| Variable | Purpose |
+| --- | --- |
+| `GOOGLE_API_KEY` | Google AI / Gemini API key for ADK agents |
+| `GOOGLE_CLOUD_PROJECT` | Optional Vertex AI / GCP project |
+| `GOOGLE_CLOUD_LOCATION` | Optional GCP region (default in example: `us-central1`) |
+| `ANTHROPIC_API_KEY` | Optional; used only with the `integrations` extra |
+
+API keys are **not** required to import the package or run unit tests. They are required for live model calls.
+
+## `config.yaml`
+
+The sample agent loads project-root `config.yaml` when present:
+
 ```yaml
 adk:
   agent_name: sample_agent
@@ -17,11 +26,13 @@ adk:
   max_tokens: 4096
   temperature: 0.7
 mcp:
+  # Documented for future use; connect_mcp_server currently takes command/args.
   server_path: src/mcp_server.py
-  transport: stdio  # Options: stdio, sse, http
-  server_url: http://localhost:8050/sse  # Required for sse or http transports
+  transport: stdio
+  server_url: http://localhost:8050/sse
 ```
 
-## Advanced Options
-- **ADK**: Customize the model, token limits, or add tools via `Agent` parameters in `agent.py`.
-- **MCP**: Adjust transport types or specify custom server URLs in `mcp_client.py`.
+## Code entry points
+
+- **ADK**: `create_agent()` / `root_agent` in `agent.py`
+- **MCP**: `connect_mcp_server(command, args=...)` in `mcp_client.py`

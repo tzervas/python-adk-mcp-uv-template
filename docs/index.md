@@ -2,20 +2,19 @@
 
 ## Python ADK + MCP + UV Template
 
-A template for building AI agent applications with Google ADK, Anthropic MCP, and UV.
+A starter template for AI agent projects using:
+
+- **Google ADK** for agent definition and tooling
+- **MCP** (Model Context Protocol) for external tool/server connectivity
+- **uv** for fast, lockfile-based Python environments
 
 ### Getting Started
 
-Follow the [README](https://github.com/tzervas/python-adk-mcp-uv-template) for setup instructions.
-
-### Key Features
-
-- AI agent development with Google ADK.
-- External data connectivity via Anthropic MCP.
-- Fast dependency management with UV.
+See the repository [README](https://github.com/tzervas/python-adk-mcp-uv-template) for install and usage instructions.
 
 ### Guides
 
 - [Configuration](configuration.md)
-- [Developer Guide](devel-docs/developer_guide.md)
--
+- [ADK guide](adk_guide.md)
+- [MCP guide](mcp_guide.md)
+- [API modules](modules.md)
