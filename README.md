@@ -1,5 +1,10 @@
 # Python ADK + MCP + UV Template
 
+<!-- FLEET-BADGES:BEGIN -->
+[![CI](https://github.com/tzervas/python-adk-mcp-uv-template/actions/workflows/fleet-ci.yml/badge.svg?branch=main)](https://github.com/tzervas/python-adk-mcp-uv-template/actions/workflows/fleet-ci.yml?query=branch%3Amain)
+[![Security](https://github.com/tzervas/python-adk-mcp-uv-template/actions/workflows/fleet-security.yml/badge.svg?branch=main)](https://github.com/tzervas/python-adk-mcp-uv-template/actions/workflows/fleet-security.yml?query=branch%3Amain)
+<!-- FLEET-BADGES:END -->
+
 **Project status**: Active template. Scaffolding works for local install, tests, lint, and docs; live agent/MCP demos need your own API keys and server processes.
 
 **Intent**: A template for building AI agent applications using Google’s Agent Development Kit (ADK), the Model Context Protocol (MCP), and [uv](https://docs.astral.sh/uv/) for fast, reproducible Python dependency management.
