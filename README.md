@@ -5,7 +5,7 @@
 [![Security](https://github.com/tzervas/python-adk-mcp-uv-template/actions/workflows/fleet-security.yml/badge.svg?branch=main)](https://github.com/tzervas/python-adk-mcp-uv-template/actions/workflows/fleet-security.yml?query=branch%3Amain)
 <!-- FLEET-BADGES:END -->
 
-**Project status**: Active template. Scaffolding works for local install, tests, lint, and docs; live agent/MCP demos need your own API keys and server processes.
+**Project status**: Active **GitHub template** (`isTemplate=true`). Scaffolding works for local install, tests, lint, and docs; live agent/MCP demos need your own API keys and server processes.
 
 **Intent**: A template for building AI agent applications using Google’s Agent Development Kit (ADK), the Model Context Protocol (MCP), and [uv](https://docs.astral.sh/uv/) for fast, reproducible Python dependency management.
 
@@ -17,8 +17,13 @@
 - Ensure testing, linting, and documentation workflows.
 - Support containerized development with Docker.
 
+> **Prefer [tz-forge](https://github.com/tzervas/tz-forge) `tz-new`** for general fleet scaffolds (Rust/Python kinds, assistant profiles, fleet modules). Use **this** template when you specifically need the ADK + MCP + uv layout.
+
 ## Table of Contents
 
+- [Use this template](#use-this-template)
+- [5-minute path](#5-minute-path)
+- [Rename the package](#rename-the-package)
 - [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -33,6 +38,82 @@
 - [Troubleshooting](#troubleshooting)
 - [Acknowledgments](#acknowledgments)
 - [References](#references)
+
+## Use this template
+
+1. On GitHub, open [python-adk-mcp-uv-template](https://github.com/tzervas/python-adk-mcp-uv-template) and click **Use this template** → **Create a new repository**.
+2. Clone your new repo.
+3. Follow the [5-minute path](#5-minute-path), then [Rename the package](#rename-the-package).
+
+CLI equivalent (create a repo from the template):
+
+```bash
+gh repo create my-adk-agent --template tzervas/python-adk-mcp-uv-template --public --clone
+cd my-adk-agent
+```
+
+Agent surface for coding assistants: [AGENTS.md](AGENTS.md) · [CLAUDE.md](CLAUDE.md).
+
+## 5-minute path
+
+Prerequisites: [uv](https://docs.astral.sh/uv/getting-started/installation/) and Python **3.12+**.
+
+```bash
+# From a clone of this template (or your new repo)
+uv sync
+make test
+# expected: pytest passes (sample_tool / agent unit tests)
+```
+
+Smoke import without `make`:
+
+```bash
+uv run python -c "from python_adk_mcp_uv_template.agent import sample_tool; print(sample_tool('hi'))"
+# expected: {'status': 'success', 'result': 'Processed: hi'}
+```
+
+Quality gate used in CI:
+
+```bash
+make check   # lock, pre-commit, mypy, deptry
+make test
+```
+
+## Rename the package
+
+After creating a repo from this template, replace the placeholder package name so imports and metadata match your product.
+
+| Placeholder | Example replacement |
+|-------------|---------------------|
+| Project / dist name `python-adk-mcp-uv-template` | `my-adk-agent` |
+| Import package `python_adk_mcp_uv_template` | `my_adk_agent` |
+| Directory `src/python_adk_mcp_uv_template/` | `src/my_adk_agent/` |
+
+Checklist:
+
+1. **Rename the package directory**
+
+   ```bash
+   mv src/python_adk_mcp_uv_template src/my_adk_agent
+   ```
+
+2. **Update `pyproject.toml`**: set `name = "my-adk-agent"` (and description/urls as needed). Hatch/uv discover packages under `src/`; ensure the new directory name matches the import path.
+
+3. **Rewrite imports** in tests, docs, `Dockerfile`, and any `adk run` paths:
+
+   ```bash
+   # example: recursive replace of the import path (review the diff)
+   rg -l 'python_adk_mcp_uv_template' | xargs sed -i 's/python_adk_mcp_uv_template/my_adk_agent/g'
+   ```
+
+4. **Refresh lock + verify**
+
+   ```bash
+   uv sync
+   make test
+   ```
+
+5. Optional: update README title, Docker image tag, and MkDocs `site_name` in `mkdocs.yml`.
 
 ## Description
 
@@ -56,7 +137,7 @@ cd python-adk-mcp-uv-template
 uv sync
 ```
 
-Or use **Use this template** on GitHub.
+Or use **[Use this template](#use-this-template)** on GitHub (preferred for new projects).
 
 ## Usage
 
